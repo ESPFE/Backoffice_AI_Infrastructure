@@ -80,11 +80,13 @@ services:
     image: n8nio/n8n:latest
     container_name: n8n
     restart: unless-stopped
+
     ports:
       - "127.0.0.1:5678:5678"
 
     networks:
       - proxy
+      - internal
 
     labels:
       - traefik.enable=true
@@ -117,6 +119,24 @@ services:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
     
+  ollama:
+    build: .
+    #image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    
+    ports:
+      - "127.0.0.1:11434:11434"
+
+    environment:
+      - LLM_MODELS=llama3,mistral,gpt-oss,deepseek-r1,qwen3-vl,qwen3-coder
+
+    networks:
+      - internal
+
+    volumes:
+      - ollama_data:/root/.ollama
+  
 
 
 networks:
@@ -127,3 +147,4 @@ networks:
 
 volumes:
   n8n_data:
+  ollama_data:
