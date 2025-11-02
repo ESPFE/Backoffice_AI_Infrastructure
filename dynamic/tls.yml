@@ -1,0 +1,4 @@
+    tls:
+      certificates:
+        - certFile: /certs/n8n.edv-peuker.de.full_chain.pem
+          keyFile:  /certs/n8n.edv-peuker.de.key.pem
