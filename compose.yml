@@ -2,7 +2,7 @@ services:
   traefik:
     image: traefik:latest
     container_name: traefik
-    restart: allways
+    restart: always
     security_opt:
       - no-new-privileges:true
 
@@ -66,7 +66,7 @@ services:
   n8n:
     image: n8nio/n8n:latest
     container_name: n8n
-    restart: allways
+    restart: always
 
     ports:
       - "127.0.0.1:5678:5678"
@@ -121,10 +121,18 @@ services:
   ollama:
     build: ./ollama
     container_name: ollama
-    restart: allways
+    restart: always
     ports:
       - "127.0.0.1:11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     environment:
+      - NVIDIA_VISIBLE_DEVICES=all
       - LLM_MODELS=llama3,mistral,gpt-oss,deepseek-r1,qwen3-vl,qwen3-coder
     networks:
       - internal
@@ -133,7 +141,7 @@ services:
 
   postgres_n8n:
     image: postgres:latest
-    restart: allways
+    restart: always
     environment:
       POSTGRES_USER: "${POSTGRES_N8N_DB_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_N8N_DB_PASSWORD}"
@@ -151,7 +159,7 @@ services:
 
   postgres_ollama_mem:
     image: postgres:latest
-    restart: allways
+    restart: always
     environment:
       POSTGRES_USER: "${POSTGRES_OLLAMA_MEM_DB_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_OLLAMA_MEM_DB_PASSWORD}"
@@ -169,7 +177,7 @@ services:
 
   adminer:
     image: adminer
-    restart: allways
+    restart: always
     ports: 
       - "127.0.0.1:8081:8080"
     networks:

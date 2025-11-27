@@ -1,3 +1,2 @@
-certs/
-#local-files/
+certs/*.pem
 .DS_Store
