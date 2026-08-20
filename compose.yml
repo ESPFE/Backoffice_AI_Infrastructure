@@ -81,7 +81,6 @@ services:
       postgres_ollama_mem:
         condition: service_healthy
       n8n-runners:
-        condition: service_healthy
 
     labels:
       - traefik.enable=true
