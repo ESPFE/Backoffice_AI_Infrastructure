@@ -133,7 +133,8 @@ services:
               capabilities: [gpu]
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - LLM_MODELS=llama3,mistral,gpt-oss,deepseek-r1,qwen3-vl,qwen3-coder
+      - OLLAMA_CONTEXT_LENGTH=8192
+      - LLM_MODELS=llama3,mistral,gpt-oss,deepseek-r1,qwen3-vl,qwen3-coder,deepseek-r1-0528-qwen3-8b,gemma-3n-e4b
     networks:
       - internal
     volumes:
