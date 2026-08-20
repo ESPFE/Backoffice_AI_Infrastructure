@@ -80,6 +80,8 @@ services:
         condition: service_healthy
       postgres_ollama_mem:
         condition: service_healthy
+      n8n-runners:
+        condition: service_healthy
 
     labels:
       - traefik.enable=true
@@ -113,10 +115,25 @@ services:
       - DB_POSTGRESDB_DATABASE=${POSTGRES_N8N_DB_NAME}
       - DB_POSTGRESDB_USER=${POSTGRES_N8N_DB_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_N8N_DB_PASSWORD}
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_RUNNERS_MODE=external
+      - N8N_RUNNERS_BROKER_LISTEN_ADDRESS=0.0.0.0
+      - N8N_RUNNERS_AUTH_TOKEN=CHANGE_ME_TO_RANDOM_STRING
+      - N8N_NATIVE_PYTHON_RUNNER=true
 
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
+
+
+  n8n-runners:
+    image: n8nio/runners:latest
+    container_name: n8n-runners
+    restart: unless-stopped
+    environment:
+      - N8N_RUNNERS_TASK_BROKER_URI=http://n8n:5679
+      - N8N_RUNNERS_AUTH_TOKEN=CHANGE_ME_TO_RANDOM_STRING
+
     
   ollama:
     build: ./ollama
