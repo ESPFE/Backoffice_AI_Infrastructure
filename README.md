@@ -3,6 +3,7 @@ Setup Server:
  - Run Setup Scripts:
     - Setup_Debian.sh
     - Setup_Docker.sh
+    Only if you have a dedicated nvidia gpu:
     - Setup_Nvidia_Container_Toolkit.sh
 - gnerate tls certs an place them to /certs/
 - setup path to tls certs in /dynamic/tls.yml
@@ -10,8 +11,10 @@ Setup Server:
     - DOMAIN_NAME
     - SUBDOMAIN
     - SSL_EMAIL
-- build containers: 
-    docker compose up --build
+- build containers:
+    docker compose up --build -d
+    If you have a dedicated nvidia gpu -> use this command
+    docker compose --profile gpu up --build -d
 
 - Start containers:
     docker compose up
