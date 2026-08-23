@@ -14,7 +14,7 @@ Setup Server:
 - build containers:
     docker compose up --build -d
     If you have a dedicated nvidia gpu -> use this command
-    docker compose --profile gpu up --build -d
+    docker compose -f compose.yml -f compose.gpu.yml up --build -d
 
 - Start containers:
     docker compose up
