@@ -2,9 +2,9 @@ tls:
   stores:
     default:
       defaultCertificate:
-        certFile: /certs/n8n.edv-peuker.de.fullchain.pem
+        certFile: /certs/n8n.edv-peuker.de.full_chain.pem
         keyFile:  /certs/n8n.edv-peuker.de.key.pem
 
   certificates:
-    - certFile: /certs/n8n.edv-peuker.de.fullchain.pem
+    - certFile: /certs/n8n.edv-peuker.de.full_chain.pem
       keyFile:  /certs/n8n.edv-peuker.de.key.pem

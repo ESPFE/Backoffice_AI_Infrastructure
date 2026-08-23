@@ -17,7 +17,7 @@ Setup Server:
     docker compose -f compose.yml -f compose.gpu.yml up --build -d
 
 - Start containers:
-    docker compose up
+    docker compose up -d
 
 - Stop containers:
     docker compose down
