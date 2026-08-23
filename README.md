@@ -13,8 +13,13 @@ Setup Server:
     - SSL_EMAIL
 - build containers:
     docker compose up --build -d
+
     If you have a dedicated nvidia gpu -> use this command
     docker compose -f compose.yml -f compose.gpu.yml up --build -d
+
+    For internal purposes only and in development at the moment
+    DO NOT USE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING AND WHAT THIS IS FOR
+    docker compose -f compose.yml -f compose.msp_automation.yml up --build -d
 
 - Start containers:
     docker compose up -d

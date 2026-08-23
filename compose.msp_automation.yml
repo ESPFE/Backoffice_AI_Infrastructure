@@ -1,0 +1,13 @@
+## this is for internal purposes and in development at the moment
+## DO NOT USE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING AND WHAT THIS IS FOR
+services:
+  python-api:
+    build:
+      context: /opt/MSP_Automation
+    container_name: msp-automation
+    restart: unless-stopped
+    networks:
+      - internal
+    volumes:
+      - /opt/MSP_Automation/.env:/app/.env:ro
+      - /opt/MSP_Automation/.env.local:/app/.env.local:ro
